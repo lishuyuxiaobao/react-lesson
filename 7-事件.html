@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script type="text/babel">
+        class ToggleComponent extends React.Component {
+            constructor(){
+                super();
+                this.state = {
+                    toggle:true
+                }
+            }
+            render(){
+                let {toggle} = this.state;
+                return(
+                    <div>
+                        <button onClick={this.activateLasers}>{toggle ? "ON" : "OFF"}</button>
+                    </div>
+                )
+            }
+            activateLasers(event){
+                //react会自动把事件参数传过来
+                console.log(this)
+                return console.log(this)
+                // this.setState( 
+                //     {
+                //         toggle:false
+                //     }
+                // )
+            }
+            componentDidMount(){
+
+                
+            }
+        }
+
+        ReactDOM.render(<ToggleComponent/> , box)
+
+    </script>
+
+</body>
+
+</html>

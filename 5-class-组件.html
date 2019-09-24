@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .zhongbei {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script type="text/babel">
+    //继承父类属性 并 自动传参赋值 
+        class App extends React.Component{
+
+            //constructor  用到就写不用不管
+            constructor(){
+                super();
+                console.log("1  constructor")
+            }
+
+
+
+            //render必须写  渲染
+            render(){
+                console.log("render ...",this.props)
+                return (
+                    <div>
+                        <h1>这里{this.props.name}---{this.props.location}</h1>
+                    </div>
+                );
+            }
+        }
+        // 1.React内部 会帮你实例化  相当于 var App = new App()
+        // 2.app.render 获取到虚拟DOM
+        // 3.通过虚拟DOM创建真是的DOM
+
+        ReactDOM.render(<App name="李白" location="大唐" /> , box)
+
+    </script>
+
+</body>
+
+</html>

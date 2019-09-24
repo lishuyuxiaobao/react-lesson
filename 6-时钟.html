@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .zhongbei {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script type="text/babel">
+    //继承父类属性 并 自动传参赋值 
+        class ClockComponent extends React.Component{
+            constructor(){
+                console.log("constructor")
+                super();
+                this.number = 10;
+                this.state = {
+                    age:20,
+                    time:new Date().toString()
+                }
+            }
+            render(){
+                // console.log("render")
+                let {name} = this.props
+                let {time} = this.state
+                let {age} = this.state
+                return (
+                    <div>
+                        <p>{name}---{time}---{age}</p>
+                    </div>
+                )
+            }
+
+            //vue 的mounted DOM加载完毕
+            componentDidMount(){
+                console.log("componentDidMount");
+
+                this.timerId = setInterval(() => {
+                    //修改数据必须写在 setState()  和微信小程序类似  和vue不一样
+                    this.setState({
+                        time:new Date().toString()
+                    })
+                }, 1000);
+
+            }
+            //组件消失的时候调用
+            componentWillUnmount(){
+                clearInterval(this.timerId);
+                console.log("componentWillUnmount")
+            }
+        }
+
+        ReactDOM.render(<ClockComponent name="李白"/> , box)
+
+    </script>
+
+</body>
+
+</html>

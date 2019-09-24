@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this</title>
+</head>
+
+<body>
+    <script>
+        // "use strict"
+        var name = "杜甫"
+        var person1 = {
+            name: "李白",
+            say: function () {
+                console.log(this.name, "你好")
+            }
+        }
+        person1.say();
+        var fn = person1.say;
+        fn();  //window.fn()
+
+        var person2 = {
+            name: "王勃"
+        }
+        person2.say = person1.say;
+        person2.say();  // this  谁调用就是谁
+        person2.say.call(window);  // this  谁调用就是谁  window改变this指向
+
+        //改变this的指向  call()  bind()  apply()
+        //call(修改this的指向,原函数的参数)  1.修改指向 并返回一个新函数 2.立即执行  
+        //apply(修改this的指向,[])  区别 参数传递格式不一样
+        //bind(修改this的指向,原函数的参数)  只是copy一个函数   不会立即执行 ， 自己找时间调用
+        function fn2(a, b) {
+            console.log(this)
+        }
+        fn2();
+        fn2.call({}, 10, 20);
+
+        fn2.apply({}, [10, 20]);
+
+        fn2.bind({});
+
+    </script>
+
+</body>
+
+</html>

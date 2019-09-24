@@ -17,6 +17,7 @@
 <body>
     <div id="box">真布局</div>
     <div id="box2"></div>
+    <div id="box3"></div>
 
     <!-- 
         text/babel 这个类型会识别js中html标签
@@ -73,6 +74,23 @@
 
         //true  非0都是
         //false 0 和 NaN（和自身也不相等）
+
+        // 模仿v-for
+        var numbers = [
+            <h1 key="h11">这里是h1</h1>,
+            <h1 key="h22">这里是h2</h1>
+        ];
+        var person = {name:"李白"}
+        ReactDOM.render((
+                <div>
+
+                    {/* 数组会自动展开  对象不能识别，不能直接解析*/}
+                    {numbers}
+                    
+                </div>
+                ),box3)
+
+
     </script>
 
 </body>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Point {
+            constructor(x, y) {
+                console.log("我创建了", x, y);
+                console.log(`x:${x},y:${y}`);
+                this.x = x;
+                this.y = y;
+            }
+            //自定义函数  会自动保存在原型上
+            sayHi() {
+                console.log(`我的位置x:${this.x},y:${this.y}`)
+            }
+        }
+
+
+
+
+        var point1 = new Point(10, 20);
+        console.log(point1)
+        point1.sayHi();
+
+        var point2 = new Point(111, 222)
+        console.log(point2)
+        point2.sayHi()
+
+        class ColorPoint extends Point {
+            constructor(x, y, color) {
+
+                //子类的构造函数会覆盖父类的构造函数  ，  必须手动调用父类的构造函数
+                super(x, y);
+                // this.x = x;
+                // this.y = y;
+
+                //只需要保存自己特有的属性就可以了
+                this.color = color;
+                console.log("ColorPoint构造函数")
+            }
+
+        }
+        var color1 = new ColorPoint(10, 20, "red");
+        console.log(color1)
+        color1.sayHi()
+
+
+    </script>
+</body>
+
+</html>
