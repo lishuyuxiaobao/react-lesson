@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+
+    <script type="text/babel">
+        function HelloMessage(props) {
+            return (
+                <h1>hello react  { props.name } { props.location }  </h1>
+            )
+        }
+        var element = <HelloMessage name="中北大学" location="太原" /> 
+        //注意闭合标签
+        ReactDOM.render(element, box)
+
+
+        //组件嵌套
+        function Name(props) {
+            return (
+                <div>
+                    <h1>网站名称{props.name}</h1>
+                </div>
+            )
+        }
+        function Link(props) {
+            return (
+                <div>
+                    <a href="">网站地址{props.url}</a>
+                </div>
+            )
+        }
+        function App() {
+            return (
+                <div>
+                    <Name name="蓝鸥科技" />
+                    <Link url="https://www.lanou3g.com" />
+                </div>
+            )
+        }
+        ReactDOM.render(<App/>,box2)
+
+
+    </script>
+
+
+
+</body>
+
+</html>
