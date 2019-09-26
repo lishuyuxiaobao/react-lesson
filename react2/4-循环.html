@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>循环</title>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script type="text/babel">
+
+
+        // var numbers = [1, 2, 3, 4, 5];
+        //map()  会帮我们创建一个新的数组并且把处理过的数据保存  并且返回出去
+        // 不改变原数组
+        // var newNumbers = numbers.map((value, index) => {
+        //     return value + "px";
+        // })
+        // console.log(newNumbers)
+
+        class ListItem extends React.Component{
+            state = {
+                numbers : [10, 20, 30, 40, 50]
+            }
+
+            render(){
+                let {numbers} = this.state;
+                let items = numbers.map((num,index) => {
+                    return (
+                        <li key={index}>{num}</li>
+                    )
+                })
+                return (
+                <div>
+                    <ul>{items}</ul>
+                    <br />
+                    <ol>{numbers.map((num,index) => {
+                    return (
+                        <li key={index}>{num}</li>
+                    )
+                })}</ol>
+                </div>
+            )
+            }
+        }
+        ReactDOM.render(<ListItem />,box)
+
+
+    </script>
+
+</body>
+
+</html>

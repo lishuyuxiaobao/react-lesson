@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="box"></div>
+    <script type="text/babel">
+
+    class Numbers extends React.Component {
+        constructor(){
+            super();
+            console.log("constructor")
+        }
+        state = {
+            num : 0
+        }
+        // 绘制
+        render(){
+            console.log("render")
+            return (
+                <div>
+                    <p>{this.state.num}</p>
+                    <button onClick={() => {
+                        this.setState((oldState) => {
+                            return {
+                                num:oldState.num + 1
+                            }
+                        })
+                        console.log("点击事件",this.state)
+                    }}>累加</button>
+                </div>
+            )
+        }
+       
+        componentWillMount() {
+             //DOM 还未创建  还没有走render函数，没有绘制
+            console.log('Component WILL MOUNT!')
+        }
+        componentDidMount() {
+            //DOM 创建完了 可以进行DOM操作，发请求
+            console.log('Component DID MOUNT!')
+        }
+        componentWillReceiveProps(newProps) {
+                console.log('Component WILL RECEIVE PROPS!')
+        }
+        
+        shouldComponentUpdate(newProps, newState) {
+            // 状态修改了,是否允许更新   true 更新  false  不更新  
+            // console.log("should")
+            // if(confirm("确认更新么")  == true){
+            //     return true;
+            // }else{
+            //     return false;
+            // }
+            return true;
+                
+        }
+        componentWillUpdate(nextProps, nextState) {
+                console.log('nextState',nextState,"state",this.state);
+        }
+        componentDidUpdate(prevProps, prevState) {
+                console.log('Component DID UPDATE!')
+        }
+        //界面消失调用
+        componentWillUnmount() {
+                console.log('Component WILL UNMOUNT!')
+        }
+    }
+    ReactDOM.render(<Numbers /> , box)
+
+    /*
+        首次加载顺序
+        1 constructor
+        2 componentWillMount
+        3 render
+        4 componentDidMount
+
+        更新数据执行顺序
+        1 shouldComponentUpdate
+        2 componentWillUpdate
+        3 render
+        4 componentDidUpdate
+
+        vue和react 更新都是异步的
+        vue中nextTick(() => {
+            这里可以拿到更新的数据
+        })
+
+
+    */
+
+    </script>
+</body>
+
+</html>
